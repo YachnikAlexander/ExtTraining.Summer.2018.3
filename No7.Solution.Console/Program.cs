@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System;
 
 namespace No7.Solution.Console
 {
