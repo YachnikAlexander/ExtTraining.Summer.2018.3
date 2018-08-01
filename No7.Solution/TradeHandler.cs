@@ -23,16 +23,18 @@ namespace No7.Solution
         {
             this.stream = stream;
             TradeRecord trade = new TradeRecord();
-            StartTrade(trade);
             reposytory = new DataBaseSqlTable();
+            StartTrade(trade);
+            
         }
 
         public void HandleTrades(Stream stream, IReposytory reposytory)
         {
             this.stream = stream;
             TradeRecord trade = new TradeRecord();
-            StartTrade(trade);
             this.reposytory = reposytory;
+            StartTrade(trade);
+           
         }
         //добавил этот конструктор для добавления нового репозитория
         //для хранения данных
@@ -40,8 +42,9 @@ namespace No7.Solution
         public void HandleTrades(Stream stream, ITrade trade)
         {
             this.stream = stream;
-            StartTrade(trade);
             this.reposytory = new DataBaseSqlTable();
+            StartTrade(trade);
+           
         }
         //добавил этот конструктор для добавления нового Trade
         //для хранения данных
@@ -59,11 +62,18 @@ namespace No7.Solution
 
         //Метод, который при помощи полиморфного вызого выхывает нужный метод для сохранения
         //данных в нужный репозиторий
-        private void SaveIntoDatabase() => reposytory.SaveData(trades);
+        private void SaveIntoDatabase()
+        {
+            reposytory.SaveData(trades);
+        }
 
         //метод, который создает экземпляры сделок нужного формата
         //так же при помощи полиморфного вызова
-        private void FillTrades(ITrade trade) => trade.FillData(this.lines);
+        private void FillTrades(ITrade trade)
+        {
+            trades = new List<ITrade>();
+            trades = trade.FillData(this.lines);
+        }
 
         //Метод для чтения файла
         private void FileReader(Stream stream)
@@ -72,7 +82,6 @@ namespace No7.Solution
             {
                 string line;
                 lines = new List<string>();
-                trades = new List<ITrade>();
                 while ((line = reader.ReadLine()) != null)
                 {
                     lines.Add(line);

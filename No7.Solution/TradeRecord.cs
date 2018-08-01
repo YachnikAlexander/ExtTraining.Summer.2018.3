@@ -34,7 +34,7 @@ namespace No7.Solution
         //метод для заполнения данных 
         public List<ITrade> FillData(List<string> lines)
         {
-            List<TradeRecord> trades = new List<TradeRecord>();
+            List<ITrade> trades = new List<ITrade>();
             int lineCount = 1;
             foreach (var line in lines)
             {
@@ -60,7 +60,7 @@ namespace No7.Solution
                 lineCount++;
 
             }
-            return null;
+            return trades;
         }
 
         private void ValidationFields(string[] fields, int lineCount)

@@ -16,10 +16,11 @@ namespace No7.Solution
 
         public void SaveData(List<ITrade> tradesInterface)
         {
+
             List<TradeRecord> trades = new List<TradeRecord>();
             for (int i = 0; i < tradesInterface.Count; i++)
             {
-                trades[i] = (TradeRecord)tradesInterface[i];
+                trades.Add((TradeRecord)tradesInterface[i]);
             }
             SaveTradeRecord(trades);
         }
